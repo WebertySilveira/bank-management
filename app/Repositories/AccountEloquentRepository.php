@@ -24,4 +24,9 @@ class AccountEloquentRepository implements AccountRepository
     {
         return $this->model::whereId($id)->first();
     }
+
+    public function findByAccountNumber(string $accountNumber): ?Model
+    {
+        return $this->model::where('account_number', $accountNumber)->first();
+    }
 }

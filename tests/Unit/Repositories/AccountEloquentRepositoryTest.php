@@ -55,4 +55,22 @@ class AccountEloquentRepositoryTest extends TestCase
 
         $this->assertInstanceOf(Account::class, $result);
     }
+
+
+    public function test_findByAccountNumber_can_find_a_account()
+    {
+        $expectedAccount = new Account($this->param);
+
+        $this->accountMock->shouldReceive('where')
+            ->with('account_number', $expectedAccount->account_number)
+            ->once()
+            ->andReturnSelf();
+        $this->accountMock->shouldReceive('first')
+            ->once()
+            ->andReturn($expectedAccount);
+
+        $result = $this->accountRepositoryMock->findByAccountNumber($expectedAccount->account_number);
+
+        $this->assertInstanceOf(Account::class, $result);
+    }
 }
