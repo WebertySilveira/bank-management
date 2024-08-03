@@ -14,7 +14,7 @@ class CreateRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'type' => 'required',
+            'type' => 'required|in:D,C,P',
             'account_number' => 'required',
             'value' => 'required|numeric'
         ];
@@ -24,6 +24,7 @@ class CreateRequest extends BaseRequest
     {
         return [
             'type.required' => 'O tipo da transação é obrigatório.',
+            'type.in' => 'A forma de pagamento deve ser D (débito), C (crédito) ou P (Pix).',
             'account_number.required' => 'O número da conta é obrigatório.',
             'value.required' => 'O valor é obrigatório.',
             'value.numeric' => 'O valor deve ser um número.',
