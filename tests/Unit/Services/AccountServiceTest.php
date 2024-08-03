@@ -58,4 +58,16 @@ class AccountServiceTest extends TestCase
 
         $this->assertInstanceOf(Account::class, $result);
     }
+
+    public function test_findByAccountNumber_find_and_return_account()
+    {
+        $this->repositoryMock->shouldReceive('findByAccountNumber')
+            ->with($this->param['account_number'])
+            ->once()
+            ->andReturn($this->expectedModel);
+
+        $result = $this->accountService->findByAccountNumber($this->param['account_number']);
+
+        $this->assertInstanceOf(Account::class, $result);
+    }
 }

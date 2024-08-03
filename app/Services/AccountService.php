@@ -20,6 +20,11 @@ class AccountService implements AccountRepository
         return $this->repository->findById($id);
     }
 
+    public function findByAccountNumber(string $accountNumber): ?Model
+    {
+        return $this->repository->findByAccountNumber($accountNumber);
+    }
+
     public function save(array $param): Model
     {
         return $this->repository->save($param);
