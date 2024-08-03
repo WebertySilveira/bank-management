@@ -9,3 +9,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('conta', [AccountController::class, 'store'])->name('conta.store');
+Route::get('conta', [AccountController::class, 'show'])->name('conta.show');

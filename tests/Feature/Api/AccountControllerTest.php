@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Api;
 
+use App\Models\Account;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -44,6 +45,56 @@ class AccountControllerTest extends TestCase
                     "balance" => [
                         "O saldo deve ser um número."
                     ]
+                ]
+            ]
+        );
+    }
+
+    public function test_account_show_route_is_working()
+    {
+        Account::create([
+            'account_number' => '12345',
+            'balance' => '222.22',
+        ]);
+
+        $response = $this->get('/api/conta?account_number=12345');
+
+        $response->assertStatus(200)->assertJson(
+            [
+                'account' =>
+                    [
+                        'account_number' => '12345',
+                        'balance' => '222.22',
+                    ]
+            ]
+        );
+    }
+
+    public function test_account_show_route_with_invalid_account()
+    {
+        Account::create([
+            'account_number' => '12345',
+            'balance' => '222.22',
+        ]);
+
+        $response = $this->get('/api/conta?account_number=1234');
+
+        $response->assertStatus(404)->assertJson(
+            [
+                'message' => 'Account not found'
+            ]
+        );
+    }
+
+    public function test_show_with_invalid_data()
+    {
+        $response = $this->get('/api/conta');
+
+        $response->assertStatus(400)->assertJson(
+            [
+                'mensagem' => 'Inconsistência nos dados',
+                'data' => [
+                    "account_number" => ["O número da conta é obrigatório."]
                 ]
             ]
         );
