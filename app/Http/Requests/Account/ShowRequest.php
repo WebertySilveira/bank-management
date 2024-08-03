@@ -32,4 +32,11 @@ class ShowRequest extends BaseRequest
             'account_number.required' => 'O número da conta é obrigatório.',
         ];
     }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'account_number' => $this->numero_conta,
+        ]);
+    }
 }

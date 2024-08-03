@@ -38,4 +38,12 @@ class CreateRequest extends BaseRequest
             'balance.min' => 'O saldo deve ser pelo menos 0.',
         ];
     }
+
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'account_number' => $this->numero_conta,
+            'balance' => $this->saldo
+        ]);
+    }
 }

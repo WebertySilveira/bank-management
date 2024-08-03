@@ -13,13 +13,14 @@ class AccountControllerTest extends TestCase
     public function test_if_account_create_route_is_working()
     {
         $response = $this->postJson('/api/conta', [
-            'account_number' => '09876',
-            'balance' => 150.00
+            'numero_conta' => '09876',
+            'saldo' => 150.00
         ]);
 
         $response->assertStatus(201)->assertJson(
             [
-                'message' => 'Account created successfully'
+                'numero_conta' => '09876',
+                'saldo' => '150.00',
             ]
         );
         $this->assertDatabaseHas('accounts', [
@@ -31,8 +32,8 @@ class AccountControllerTest extends TestCase
     public function test_save_with_invalid_data()
     {
         $response = $this->postJson('/api/conta', [
-            'account_number' => '',
-            'balance' => 'a150.00'
+            'numero_conta' => '',
+            'saldo' => 'a150.00'
         ]);
 
         $response->assertStatus(400)->assertJson(
@@ -57,15 +58,12 @@ class AccountControllerTest extends TestCase
             'balance' => '222.22',
         ]);
 
-        $response = $this->get('/api/conta?account_number=12345');
+        $response = $this->get('/api/conta?numero_conta=12345');
 
         $response->assertStatus(200)->assertJson(
             [
-                'account' =>
-                    [
-                        'account_number' => '12345',
-                        'balance' => '222.22',
-                    ]
+                'numero_conta' => '12345',
+                'saldo' => '222.22',
             ]
         );
     }
@@ -77,11 +75,11 @@ class AccountControllerTest extends TestCase
             'balance' => '222.22',
         ]);
 
-        $response = $this->get('/api/conta?account_number=1234');
+        $response = $this->get('/api/conta?numero_conta=1234');
 
         $response->assertStatus(404)->assertJson(
             [
-                'message' => 'Account not found'
+                'message' => 'Conta não encontrada'
             ]
         );
     }

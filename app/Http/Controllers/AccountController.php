@@ -15,17 +15,23 @@ class AccountController extends Controller
             'balance' => $request['balance']
         ]);
 
-        return response()->json(['message' => 'Account created successfully', 'account' => $account], 201);
+        return response()->json([
+            'numero_conta' => $account['account_number'],
+            'saldo' => $account['balance'],
+        ], 201);
     }
 
     public function show(ShowRequest $request, AccountService $accountService)
     {
-        $accountNumber = $request->query('account_number');
+        $accountNumber = $request->query('numero_conta');
         $account = $accountService->findByAccountNumber($accountNumber);
         if (!$account) {
-            return response()->json(['message' => 'Account not found'], 404);
+            return response()->json(['message' => 'Conta não encontrada'], 404);
         }
 
-        return response()->json(['account' => $account], 200);
+        return response()->json([
+            'numero_conta' => $account['account_number'],
+            'saldo' => $account['balance'],
+        ], 200);
     }
 }
