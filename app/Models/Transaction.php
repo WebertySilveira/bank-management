@@ -11,11 +11,18 @@ class Transaction extends Model
     use HasFactory;
 
     protected $fillable = [
+        'account_id',
         'type',
         'value',
     ];
 
     protected $casts = [
         'type' => PaymentMethods::class,
+    ];
+
+    protected $hidden = [
+        'id',
+        'created_at',
+        'updated_at'
     ];
 }
