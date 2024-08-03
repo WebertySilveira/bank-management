@@ -3,12 +3,12 @@
 namespace Tests\Feature\Api;
 
 use App\Models\Account;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class AccountControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
     public function test_if_account_create_route_is_working()
     {

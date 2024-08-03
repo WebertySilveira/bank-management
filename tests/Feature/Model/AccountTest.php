@@ -3,10 +3,13 @@
 namespace Tests\Feature\Model;
 
 use App\Models\Account;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class AccountTest extends TestCase
 {
+    use DatabaseTransactions;
+
     public function test_the_application_can_create_a_account(): void
     {
         $account = Account::factory()->create([
