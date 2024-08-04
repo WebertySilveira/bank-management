@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Transaction;
 
+use App\Enums\PaymentMethods;
 use App\Http\Requests\BaseRequest;
+use Illuminate\Validation\Rule;
 
 class CreateRequest extends BaseRequest
 {
@@ -14,7 +16,7 @@ class CreateRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'type' => 'required|in:D,C,P',
+            'type' => [Rule::enum(PaymentMethods::class)],
             'account_number' => 'required',
             'value' => 'required|numeric'
         ];

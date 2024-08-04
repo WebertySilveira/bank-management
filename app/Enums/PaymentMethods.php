@@ -2,9 +2,9 @@
 
 namespace App\Enums;
 
-enum PaymentMethods
+enum PaymentMethods: string
 {
-    case P;
-    case C;
-    case D;
+    case P = "P";
+    case C = "C";
+    case D = "D";
 }
