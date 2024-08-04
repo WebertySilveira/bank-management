@@ -3,7 +3,7 @@
 namespace Tests\Unit\Services;
 
 use App\Models\Account;
-use App\Repositories\AccountEloquentRepository;
+use App\Repositories\Account\AccountEloquentRepository;
 use App\Services\AccountService;
 use Mockery;
 use Tests\TestCase;

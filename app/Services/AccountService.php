@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\AccountRepository;
-use App\Repositories\AccountEloquentRepository;
+use App\Repositories\Account\AccountEloquentRepository;
 use Illuminate\Database\Eloquent\Model;
 
 class AccountService implements AccountRepository

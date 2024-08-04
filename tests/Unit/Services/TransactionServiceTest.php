@@ -5,7 +5,7 @@ namespace Tests\Unit\Services;
 use App\Enums\PaymentMethods;
 use App\Models\Account;
 use App\Models\Transaction;
-use App\Repositories\TransactionEloquentRepository;
+use App\Repositories\Transaction\TransactionEloquentRepository;
 use App\Services\TransactionService;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;

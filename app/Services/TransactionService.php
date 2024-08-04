@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Contracts\TransactionRepository;
-use App\Repositories\TransactionEloquentRepository;
+use App\Repositories\Transaction\TransactionEloquentRepository;
 use Illuminate\Database\Eloquent\Model;
 
 class TransactionService implements TransactionRepository

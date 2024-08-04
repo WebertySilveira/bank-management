@@ -4,8 +4,8 @@ namespace App\Providers;
 
 use App\Contracts\AccountRepository;
 use App\Contracts\TransactionRepository;
-use App\Repositories\AccountEloquentRepository;
-use App\Repositories\TransactionEloquentRepository;
+use App\Repositories\Account\AccountEloquentRepository;
+use App\Repositories\Transaction\TransactionEloquentRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
