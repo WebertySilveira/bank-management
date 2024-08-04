@@ -15,6 +15,8 @@ class TransactionEloquentRepositoryTest extends TestCase
 
     private $transactionMock;
     private $transactionRepositoryMock;
+    private $account;
+    private $param;
 
     protected function setUp(): void
     {

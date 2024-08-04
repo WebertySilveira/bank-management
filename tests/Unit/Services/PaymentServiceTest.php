@@ -8,6 +8,7 @@ use Tests\TestCase;
 class PaymentServiceTest extends TestCase
 {
     private $paymentMock;
+    private $param;
 
     protected function setUp(): void
     {
