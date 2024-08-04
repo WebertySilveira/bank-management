@@ -16,7 +16,7 @@ class CreateRequest extends BaseRequest
     public function rules(): array
     {
         return [
-            'type' => [Rule::enum(PaymentMethods::class)],
+            'type' => ['required', Rule::in(PaymentMethods::all())],
             'account_number' => 'required',
             'value' => 'required|numeric'
         ];
