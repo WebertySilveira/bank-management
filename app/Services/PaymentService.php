@@ -2,27 +2,19 @@
 
 namespace App\Services;
 
+use App\Factory\Payment;
+
 class PaymentService
 {
-    const D = 'D';
-    const C = 'C';
-    const P = 'P';
-
-    public function calculateFees($transaction)
+    public function calculateFees($paymentMethod, $value)
     {
-        $paymentMethod = $transaction['forma_pagamento'];
-        $value = $transaction['valor'];
-
-        $totalFee = $this->getFeeForPaymentMethod($paymentMethod, $value);
-        return number_format($totalFee, 2);
+        $paymentMethod = Payment::create($paymentMethod);
+        return $paymentMethod->process($value);
     }
 
-    private function getFeeForPaymentMethod(string $paymentMethod, $value): float
+    public function calculateFinalAmount($paymentMethod, $value)
     {
-        return match ($paymentMethod) {
-            self::P => $value * 0.00,
-            self::D => $value * 0.03,
-            self::C => $value * 0.05,
-        };
+        $fess = $this->calculateFees($paymentMethod, $value);
+        return $value + $fess;
     }
 }

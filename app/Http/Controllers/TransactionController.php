@@ -17,7 +17,7 @@ class TransactionController extends Controller
     )
     {
         $account = $accountService->findByAccountNumber($request['numero_conta']);
-        $totalValue = $request['valor'] + $paymentService->calculateFees($request);
+        $totalValue = $paymentService->calculateFinalAmount($request['forma_pagamento'], $request['valor']);
 
         $newBalance = $account->balance - $totalValue;
         if ($newBalance < 0) {
