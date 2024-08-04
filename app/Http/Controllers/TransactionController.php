@@ -14,8 +14,7 @@ class TransactionController extends Controller
         AccountService $accountService,
         PaymentService $paymentService,
         TransactionService $transactionService
-    )
-    {
+    ) {
         $account = $accountService->findByAccountNumber($request['numero_conta']);
         $totalValue = $paymentService->calculateFinalAmount($request['forma_pagamento'], $request['valor']);
 

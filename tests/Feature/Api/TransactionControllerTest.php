@@ -25,7 +25,8 @@ class TransactionControllerTest extends TestCase
 
     public function test_if_store_transaction_route_is_working()
     {
-        $response = $this->postJson('/api/transacao',
+        $response = $this->postJson(
+            '/api/transacao',
             [
                 'forma_pagamento' => "D",
                 'numero_conta' => $this->account->account_number,
@@ -38,7 +39,8 @@ class TransactionControllerTest extends TestCase
 
     public function test_validation_of_transaction_low_than_zero()
     {
-        $response = $this->postJson('/api/transacao',
+        $response = $this->postJson(
+            '/api/transacao',
             [
                 'forma_pagamento' => "D",
                 'numero_conta' => $this->account->account_number,

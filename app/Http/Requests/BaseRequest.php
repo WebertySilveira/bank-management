@@ -13,6 +13,6 @@ class BaseRequest extends FormRequest
         throw new HttpResponseException(response()->json([
             'mensagem'   => 'Inconsistência nos dados',
             'data'      => $validator->errors()
-        ],400));
+        ], 400));
     }
 }
